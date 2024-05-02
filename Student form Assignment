@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Information Form</title>
+<style>
+    .error {
+        color: red;
+    }
+</style>
+</head>
+<body>
+
+<h2>Student Information Form</h2>
+
+<form id="studentForm" onsubmit="return validateForm()">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name"><br>
+    <span id="nameError" class="error"></span><br>
+
+    <label for="rollNo">Roll Number:</label><br>
+    <input type="text" id="rollNo" name="rollNo"><br>
+    <span id="rollNoError" class="error"></span><br>
+
+    <label for="dob">Date of Birth:</label><br>
+    <input type="date" id="dob" name="dob"><br>
+    <span id="dobError" class="error"></span><br>
+
+    <label for="mobile">Mobile Number:</label><br>
+    <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}"><br>
+    <span id="mobileError" class="error"></span><br>
+
+    <label for="address">Address:</label><br>
+    <textarea id="address" name="address"></textarea><br>
+    <span id="addressError" class="error"></span><br>
+
+    <input type="submit" value="Submit">
+</form>
+
+<script>
+    function validateForm() {
+        var name = document.getElementById("name").value;
+        var rollNo = document.getElementById("rollNo").value;
+        var dob = document.getElementById("dob").value;
+        var mobile = document.getElementById("mobile").value;
+        var address = document.getElementById("address").value;
+
+        var nameError = document.getElementById("nameError");
+        var rollNoError = document.getElementById("rollNoError");
+        var dobError = document.getElementById("dobError");
+        var mobileError = document.getElementById("mobileError");
+        var addressError = document.getElementById("addressError");
+
+        nameError.textContent = "";
+        rollNoError.textContent = "";
+        dobError.textContent = "";
+        mobileError.textContent = "";
+        addressError.textContent = "";
+
+        var isValid = true;
+
+        if (name === "") {
+            nameError.textContent = "Name is required";
+            isValid = false;
+        }
+
+        if (rollNo === "") {
+            rollNoError.textContent = "Roll Number is required";
+            isValid = false;
+        }
+
+        if (dob === "") {
+            dobError.textContent = "Date of Birth is required";
+            isValid = false;
+        }
+
+        if (mobile === "") {
+            mobileError.textContent = "Mobile Number is required";
+            isValid = false;
+        } else if (!/^\d{10}$/.test(mobile)) {
+            mobileError.textContent = "Mobile Number must be 10 digits";
+            isValid = false;
+        }
+
+        if (address === "") {
+            addressError.textContent = "Address is required";
+            isValid = false;
+        }
+
+        return isValid;
+    }
+</script>
+
+</body>
+</html>
